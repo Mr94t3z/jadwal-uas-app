@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import javax.transaction.Transactional;
 
-public interface TodoRepository extends JpaRepository<Todo, Long> {
+public interface JadwalRepository extends JpaRepository<Jadwal, Long> {
 
     @Transactional
     void deleteByDone(boolean done);

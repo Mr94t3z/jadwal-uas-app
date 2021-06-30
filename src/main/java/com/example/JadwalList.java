@@ -7,14 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @UIScope
 @SpringComponent
-class TodoList extends VerticalLayout implements TodoChangeListener {
+class JadwalList extends VerticalLayout implements JadwalChangeListener {
     @Autowired
-    TodoRepository repository;
-    private List<Todo> todos;
+    JadwalRepository repository;
+    private List<Jadwal> jadwals;
 
     @PostConstruct
     void init() {
@@ -24,23 +23,23 @@ class TodoList extends VerticalLayout implements TodoChangeListener {
     }
 
     private void update() {
-        setTodos(repository.findAll());
+        setJadwals(repository.findAll());
     }
 
-    private void setTodos(List<Todo> todos) {
-        this.todos = todos;
+    private void setJadwals(List<Jadwal> jadwals) {
+        this.jadwals = jadwals;
         removeAllComponents();
-        todos.forEach(todo -> addComponent(new TodoLayout(todo, this)));
+        jadwals.forEach(todo -> addComponent(new JadwalLayout(todo, this)));
     }
 
-     void addTodo(Todo todo) {
-        repository.save(todo);
+     void addTodo(Jadwal jadwal) {
+        repository.save(jadwal);
         update();
     }
 
     @Override
-    public void todoChanged(Todo todo) {
-        addTodo(todo);
+    public void todoChanged(Jadwal jadwal) {
+        addTodo(jadwal);
     }
 
 

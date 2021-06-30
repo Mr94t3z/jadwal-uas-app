@@ -11,12 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @SpringUI
 @Theme("valo")
-public class TodoUI extends UI {
+public class JadwalUI extends UI {
 
     private VerticalLayout layout;
 
     @Autowired
-    TodoList todoList;
+    JadwalList todoList;
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
@@ -34,7 +34,7 @@ public class TodoUI extends UI {
     }
 
     private void addHeader() {
-        Label header = new Label("TODO");
+        Label header = new Label("Jadwal UAS");
         header.addStyleName(ValoTheme.LABEL_H1);
         layout.addComponent(header);
 
@@ -56,7 +56,7 @@ public class TodoUI extends UI {
         addButton.setIcon(VaadinIcons.PLUS);
 
         addButton.addClickListener(click -> {
-            todoList.addTodo(new Todo(taskField.getValue()));
+            todoList.addTodo(new Jadwal(taskField.getValue()));
             taskField.setValue("");
             taskField.focus();
         });
@@ -68,7 +68,7 @@ public class TodoUI extends UI {
     }
 
     private void addActionButtons() {
-        Button deleteButton = new Button("Delete completed items");
+        Button deleteButton = new Button("Hapus Data");
 
         deleteButton.addClickListener(click->todoList.deleteCompleted());
 
